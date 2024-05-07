@@ -1,5 +1,5 @@
 from classes import *
-# from IPython.display import clear_output
+import time as time
 
 playing_cards = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
                  'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
@@ -28,7 +28,7 @@ while play_on:
 
     if bet == 0:
         play_on = False
-    elif bet > money:
+    elif bet > player.money:
         print("Insufficient money. Please choose a lower bet.")
         continue
     else:
@@ -68,30 +68,40 @@ while play_on:
     print("Now the Dealer plays:")
     while True:
         if dealer.total < 17:
+            time.sleep(2)
             dealer.add_card(deck.deal_card())
             print("Hit!")
             print(dealer.hand)
         else:
+            time.sleep(2)
             print("Stand!")
 
             if dealer.total > 21:
+                time.sleep(2)
                 print("Bust!")
                 player.add_winnings(2 * bet)
                 print(f"You win!\nYou now have ${player.money}\n")
+                time.sleep(3)
                 break
 
             elif player.total > dealer.total:
+                time.sleep(2)
                 player.add_winnings(2 * bet)
                 print(f"You win!\nYou now have ${player.money}\n")
+                time.sleep(3)
                 break
 
             elif dealer.total > player.total:
+                time.sleep(2)
                 print(f"You lose!\nYou now have ${player.money}\n")
-                break100
+                time.sleep(3)
+                break
 
             else:
+                time.sleep(2)
                 player.add_winnings(bet)
                 print(f"It is a draw!\nYou now have ${player.money}\n")
+                time.sleep(3)
                 break
 
 
